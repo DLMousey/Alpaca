@@ -14,6 +14,13 @@ class AbstractRoute
 
     protected $action;
 
+    /**
+     * Check if a specified path and method are a match to this route
+     *
+     * @param [String] $path - The path of the route (eg. "/home")
+     * @param [String] $method - HTTP Method used to hit the application (eg. GET/POST)
+     * @return Boolean
+     */
     public function match($path, $method)
     {
         $matchesPath = false;

@@ -6,6 +6,14 @@ use Exception;
 
 class RouteBuilder implements RouteBuilderInterface
 {
+    /**
+     * Create a new AbstractRoute object from the route config
+     * passed from the Bootstrapper
+     *
+     * @param [string] $name - The name of the route
+     * @param [string] $data - The route data (eg. Controller to execute)
+     * @return Framework\Router\AbstractRoute
+     */
     public function build($name, $data)
     {
         $controller = $data['namespace'] . '\\' . $data['controller'];
@@ -20,6 +28,12 @@ class RouteBuilder implements RouteBuilderInterface
         return $routeObject;
     }
 
+    /**
+     * Locate the matching controller and instantiate a new instance
+     *
+     * @param [Controller] $controller
+     * @return Controller
+     */
     protected function findController($controller)
     {
         if(class_exists($controller)) {

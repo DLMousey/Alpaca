@@ -8,6 +8,11 @@ class Bootstrapper
 {
     protected $router;
 
+    /**
+     * Construct a new Application Bootstrapper class,
+     * This process will read the routes from the user's application
+     * config and register them with the router.
+     */
     public function __construct()
     {
         $router = new Router\Router();
@@ -23,6 +28,11 @@ class Bootstrapper
         }   
     }
 
+    /**
+     * Bootstrap the Application
+     *
+     * @return ControllerResponse
+     */
     public function bootstrap()
     {
         $this->getRouter()->dispatch();
