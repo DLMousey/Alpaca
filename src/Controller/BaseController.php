@@ -9,8 +9,8 @@ class BaseController extends Controller
 {
     public function view($templatePath)
     {
-        $templateReader = new View\Reader();
-        die(dump('called view method', $templateReader));
+        $templateReader = new View\Reader($templatePath);
+
+        die(dump($templateReader->read()));
     }
-    //..
 }
