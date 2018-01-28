@@ -14,5 +14,8 @@
             "Framework\\": "src/",
             "App\\": "app/"
         }
+    },
+    "scripts": {
+        "serve" : "php -S 0.0.0.0:8085 -t public"
     }
 }
