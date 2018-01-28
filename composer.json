@@ -6,7 +6,9 @@
             "email": "tom@deadlyllama.com"
         }
     ],
-    "require": {},
+    "require": {
+        "symfony/var-dumper": "^3.3"
+    },
     "autoload": {
         "psr-4": {
             "Framework\\": "src/",

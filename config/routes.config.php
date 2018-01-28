@@ -2,11 +2,11 @@
 
 return [
     'home' => [
-        'route' => '/',
+        'route' => '/article/{id}',
         'method' => 'GET',
         'controller' => 'HomeController',
         'namespace' => 'App\Controller',
-        'action' => 'index'
+        'action' => 'message'
     ],
     'forum' => [
         'route' => '/forum',

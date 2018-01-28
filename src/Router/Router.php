@@ -27,17 +27,27 @@ class Router
      */
     public function dispatch($path = null)
     {
+        /**
+         * If we weren't given a specific path to dispatch,
+         * Get the current request from the server super global
+         */
         if(is_null($path)) {
             $path = $_SERVER['REQUEST_URI'];
         }
 
+        /**
+         * Get the request method from the server super global,
+         * Take our path and locate a matching route for it
+         */
         $method = $_SERVER['REQUEST_METHOD'];
         $route = RouteMatcher::match($path, $method, $this->getRoutes());
 
-        $controller = $route->getController();
-        $method = $route->getAction();
-
-        return $controller->$method();
+        /**
+         * Get the controller from the route definition,
+         * Call the configured action and pass it the extracted parameters.
+         */
+        return $route->getController()
+                     ->callAction($route->getAction(), $route->getParams());
     }
 
     public function setRoutes($routes)
