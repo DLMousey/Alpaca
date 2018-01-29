@@ -4,48 +4,101 @@ namespace Framework\View;
 
 class Reader 
 {
-    protected $templatePath;
+    protected $templateDirectory;
 
-    protected $config;
+    protected $masterTemplate;
 
-    public function __construct($templatePath)
+    protected $content;
+
+    public function __construct($template)
     {
-        $config = require getcwd() . '/config/app.config.php';
-        $this->setConfig($config['views']);
-        $this->setTemplatePath(getcwd() . $config['views']['stack_dir'] . '/' . $templatePath);
+        $config = require getcwd() . "/config/app.config.php";
 
-        return $this->read();
-    }
+        $this->setTemplateDirectory(getcwd() . $config['views']['stack_dir']);
+        $this->setMasterTemplate(getcwd() . $config['views']['stack_dir'] . '/' . $config['views']['layout']);
 
-    public function read()
-    {
-        return $this->convertToString($this->getTemplatePath());
-    }
+        // die(dump($config));
+        $parent = getcwd() . "{$this->getTemplateDirectory()}/{$this->getMasterTemplate()}.tpl.php";
 
-    protected function convertToString()
-    {
-        return file_get_contents($this->getTemplatePath());
-    }
+        $this->setContent(file_get_contents($this->getTemplateDirectory() . '/' . $template));
 
-    public function setTemplatePath($templatePath)
-    {
-        $this->templatePath = $templatePath;
         return $this;
     }
 
-    public function getTemplatePath()
+    public function setTemplateDirectory($templateDirectory)
     {
-        return $this->templatePath;
-    }
-
-    public function setConfig($config)
-    {
-        $this->config = $config;
+        $this->templateDirectory = $templateDirectory;
         return $this;
     }
 
-    public function getConfig()
+    public function getTemplateDirectory()
     {
-        return $this->config;
+        return $this->templateDirectory;
     }
+
+    public function setMasterTemplate($masterTemplate)
+    {
+        $this->masterTemplate = $masterTemplate . '.tpl.php';
+        return $this;
+    }
+
+    public function getMasterTemplate()
+    {
+        return $this->masterTemplate;
+    }
+
+    public function setContent($content)
+    {
+        $this->content = $content;
+        return $this;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+    // protected $templatePath;
+
+    // protected $config;
+
+    // public function __construct($templatePath)
+    // {
+    //     $config = require getcwd() . '/config/app.config.php';
+    //     $this->setConfig($config['views']);
+    //     $this->setTemplatePath(getcwd() . $config['views']['stack_dir'] . '/' . $templatePath);
+
+    //     return $this->read();
+    // }
+
+    // public function read()
+    // {
+    //     return $this->convertToString($this->getTemplatePath());
+    // }
+
+    // protected function convertToString()
+    // {
+    //     return file_get_contents($this->getTemplatePath());
+    // }
+
+    // public function setTemplatePath($templatePath)
+    // {
+    //     $this->templatePath = $templatePath;
+    //     return $this;
+    // }
+
+    // public function getTemplatePath()
+    // {
+    //     return $this->templatePath;
+    // }
+
+    // public function setConfig($config)
+    // {
+    //     $this->config = $config;
+    //     return $this;
+    // }
+
+    // public function getConfig()
+    // {
+    //     return $this->config;
+    // }
 }

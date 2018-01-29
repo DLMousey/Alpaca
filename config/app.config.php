@@ -2,6 +2,7 @@
 
 return [
     'views' => [
-        'stack_dir' => '/views'
+        'stack_dir' => '/views',
+        'layout' => 'layout'
     ],
 ];

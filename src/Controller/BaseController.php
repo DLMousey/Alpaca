@@ -7,10 +7,21 @@ use Framework\Router\Controller;
 
 class BaseController extends Controller
 {
+    public $content;
+
     public function view($templatePath)
     {
-        $templateReader = new View\Reader($templatePath);
+        $config = require getcwd() . '/config/app.config.php';
 
-        die(dump($templateReader->read()));
+        $viewDir = getcwd() . $config['views']['stack_dir'];
+
+        $template = new View\Template();
+        $template->setTemplateDirectory($viewDir);
+        $template->setDefaultMaster($viewDir . '/' . $config['views']['layout'] . '.tpl.php');
+        $template->setTemplate($viewDir . '/' . $templatePath);
+        $template->setConfig($config['views']);
+        $template->setExtends($template->getDefaultMaster());
+
+        return $template->render();
     }
 }
