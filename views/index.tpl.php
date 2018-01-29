@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-sm-12">
-        Child
-    </div>
-    <div class="col-sm-12">
         <div class="card">
-            card
+            Child
+        </div>
+        <div class="card">
+            Another card
         </div>
     </div>
 </div>

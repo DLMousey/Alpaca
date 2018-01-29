@@ -15,7 +15,7 @@ class BaseController extends Controller
 
         $viewDir = getcwd() . $config['views']['stack_dir'];
 
-        $template = new View\Template();
+        $template = new View\Template($templatePath);
         $template->setTemplateDirectory($viewDir);
         $template->setDefaultMaster($viewDir . '/' . $config['views']['layout'] . '.tpl.php');
         $template->setTemplate($viewDir . '/' . $templatePath);
