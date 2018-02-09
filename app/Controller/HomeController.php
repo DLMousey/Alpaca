@@ -14,7 +14,7 @@ class HomeController extends BaseController
 
     public function message($id)
     {
-        return $this->view('index.tpl.php');
+        return $this->view('index.tpl.php', ['id' => $id]);
     }
 
     public function forumIndex()

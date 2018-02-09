@@ -9,7 +9,7 @@ class BaseController extends Controller
 {
     public $content;
 
-    public function view($templatePath)
+    public function view($templatePath, $data = null)
     {
         $config = require getcwd() . '/config/app.config.php';
 
@@ -22,6 +22,6 @@ class BaseController extends Controller
         $template->setConfig($config['views']);
         $template->setExtends($template->getDefaultMaster());
 
-        return $template->render();
+        return $template->render($data);
     }
 }
